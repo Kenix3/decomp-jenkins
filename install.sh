@@ -26,7 +26,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 if [[ ! -d /home/$agentName/decomp-jenkins ]]; then
-    sudo git clone https://github.com/ethteck/decomp-jenkins /home/$agentName/decomp-jenkins
+    sudo git clone https://github.com/kenix3/decomp-jenkins --branch adds_installer /home/$agentName/decomp-jenkins
     if [[ $? -ne 0 ]]; then
         echo "Failed to clone decomp-jenkins repository"
         exit
@@ -85,7 +85,7 @@ if [[ -f /etc/systemd/system/decomp-jenkins.service ]]; then
     fi
 fi
 
-sudo install -o root -g root -m 644 /home/caine/decomp-jenkins/decomp-jenkins.service /etc/systemd/system/decomp-jenkins.service
+sudo install -o root -g root -m 644 /home/$agentName/decomp-jenkins/decomp-jenkins.service /etc/systemd/system/decomp-jenkins.service
 if [[ $? -ne 0 ]]; then
     echo "Failed to install service file"
     exit
